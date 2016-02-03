@@ -2,6 +2,10 @@ package sortable.data;
 
 import com.google.gson.Gson;
 
+/**
+ * Represents a single product listing from the input file 'listings.txt'.
+ * @author fikayo
+ * */
 public class Listing {
 
 	private String title;
@@ -19,33 +23,17 @@ public class Listing {
 	public String getTitle() {
 		return title;
 	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
+	
 	public String getManufacturer() {
 		return manufacturer;
 	}
-
-	public void setManufacturer(String manufacturer) {
-		this.manufacturer = manufacturer;
-	}
-
+	
 	public String getCurrency() {
 		return currency;
 	}
-
-	public void setCurrency(String currency) {
-		this.currency = currency;
-	}
-
+	
 	public double getPrice() {
 		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
 	}
 
 	@Override

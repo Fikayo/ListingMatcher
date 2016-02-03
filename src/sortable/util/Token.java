@@ -1,10 +1,6 @@
 package sortable.util;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 /**
  * Represents a set of strings
@@ -14,7 +10,7 @@ import java.util.TreeSet;
 public enum Token {
 
 	/**
-	 * Access modifiers like public, private
+	 * A possible manufacturer from the product manufacturers.
 	 */
 	Manufacturer {
 		@Override
@@ -24,7 +20,7 @@ public enum Token {
 	},
 	
 	/**
-	 * static
+	 * A possible product family from the product families.
 	 */
 	Family {
 		@Override
@@ -33,35 +29,31 @@ public enum Token {
 		}
 	},
 	
+	/**
+	 * A possible product model from the product models.
+	 * */
 	Model {
 		@Override
 		public boolean matches(java.lang.String input) {
-			String model = input.trim().replace(" ", "");
-//			char[] chars = model.toCharArray();
-//			Arrays.sort(chars);
-//			String sortedChars = String.valueOf(chars);
-//			
-//			return Token.modelMap.containsKey(sortedChars); 
-			
+			String model = input.trim().replace(" ", "");			
 			return Token.models.contains(model);
 		}
 	},
 	
 	;
 	
-	public final static HashSet<String> manufacturers = new HashSet<>();
-	public final static HashSet<String> families = new HashSet<>();
+	private final static HashSet<String> manufacturers = new HashSet<>();
+	private final static HashSet<String> families = new HashSet<>();
 	private final static HashSet<String> models = new HashSet<>();
-	private final static HashMap<String, SortedSet<String>> modelMap = new HashMap<>();
 	
 	public abstract boolean matches(String input);
 
 	/**
-	 * Returns the first {@link TokenInterface} that matches the input string.
+	 * Returns the first {@link Token} that matches the input string.
 	 * Currently O(n)
 	 * 
 	 * @param input
-	 * @return The first {@link TokenInterface} that matches the input.
+	 * @return The first {@link Token} that matches the input.
 	 */
 	public static Token parse(String input) {
 
@@ -111,20 +103,5 @@ public enum Token {
 		}
 		
 		return m;
-	}
-	
-	public static void addModelOld(String m) {
-		String model = m.trim().replace(" ", "");
-		char[] chars = model.toCharArray();
-		Arrays.sort(chars);
-		String sortedChars = String.valueOf(chars);
-		
-		// Use the sorted string as the key to the map
-		if(!Token.modelMap.containsKey(sortedChars)) {
-			Token.modelMap.put(sortedChars, new TreeSet<String>());
-		}
-		
-		// Add the actual model as one of the values;
-		Token.modelMap.get(sortedChars).add(model);
 	}
 }

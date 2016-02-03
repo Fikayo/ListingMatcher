@@ -3,6 +3,10 @@ package sortable.util;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
 
+/**
+ * This class tokenizes an input string from a product {@link Listing}.
+ * @author fikayo
+ * */
 public final class Tokenizer {
 		
 	public static ListMultimap<Token, String> tokenize(String input) {

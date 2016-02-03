@@ -5,6 +5,10 @@ import java.util.List;
 
 import sortable.data.Listing;
 
+/**
+ * A object representing a product to listing match.
+ * @author fikayo
+ * */
 public class Match {
 	
 	private String product_name;

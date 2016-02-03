@@ -28,11 +28,13 @@ import com.google.common.collect.HashMultiset;
 import com.google.common.collect.ListMultimap;
 import com.google.gson.Gson;
 
+/**
+ * @author fikayo
+ * */
 public class ListingMatcher {
 
 	private String listingsFile;
 	private String productsFile;
-//	private Multimap<Product, Listing> matches;
 	private MatchMap matches;
 	
 	// Map by manufacturer, then by family
@@ -42,11 +44,10 @@ public class ListingMatcher {
 	public ListingMatcher(String listingsFile, String productsFile) {
 		this.listingsFile = listingsFile;
 		this.productsFile = productsFile;
-//		this.matches = HashMultimap.create();
 		this.matches = new MatchMap();
 	}	
 	
-	public void run() throws Exception {
+	public void run() {
 
 		System.out.println("Beginning program");
 		
@@ -125,7 +126,7 @@ public class ListingMatcher {
 		}		
 	}
 	
-	private void matchListing(Listing listing) throws Exception {
+	private void matchListing(Listing listing) {
 		
 		String manufacturer = null;
 		String family = null;
@@ -235,7 +236,7 @@ public class ListingMatcher {
 		return success;
 	}
 
-	private void error(String message) throws Exception {
+	private void error(String message) {
 		// throw new Exception(message);
 	}	
 }

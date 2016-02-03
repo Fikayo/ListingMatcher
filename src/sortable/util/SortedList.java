@@ -8,6 +8,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * A list of elements which maintains an order. The order is based on a specified comparator or on the natural ordering of the elements.
+ * @author fikayo
+ * */
 public class SortedList<E extends Comparable<E>> implements List<E> {
 
 	private List<E> list;

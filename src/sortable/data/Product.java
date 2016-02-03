@@ -1,11 +1,14 @@
 package sortable.data;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 import sortable.util.Token;
 import com.google.gson.*;
 
+/**
+ * Represents a single product from the input file 'products.txt'.
+ * @author fikayo
+ * */
 public class Product implements Comparable<Product> {
 
 	private String product_name;
@@ -104,86 +107,7 @@ public class Product implements Comparable<Product> {
 		return result;
 	}
 	
-	public int compareTo2(Product o) {
-		if(o == null) return 1;
-
-		int result = 0;
-		
-		// First by manufacturer
-		if(this.manufacturer == null && o.manufacturer == null) {
-			result = 0;
-		} else {		
-			result = this.manufacturer == null ? -1 : this.manufacturer.compareTo(o.manufacturer);
-		}
-		
-		if(result == 0) {
-			
-			// Then by family
-			if(this.family == null && o.family == null) {
-				result = 0;
-			} else {
-				result = this.family == null ? -1 : this.family.compareTo(o.family);
-			}
-			if(result == 0) {
-				
-				// Then by model
-				if(this.model == null && o.model == null) {
-					result = 0;
-				} else {
-					result = this.model == null ? -1 : this.model.compareTo(o.model);
-				}
-				if(result == 0) {
-					
-					// Then, finally, by product_name
-					if(this.product_name == null && o.product_name == null) {
-						result = 0;
-					} else {						
-						return this.product_name == null ? -1 : this.product_name.compareTo(o.product_name);
-					}
-				}				
-			}
-		}
-		
-		return result;
-	}
-		
-	public int compareToOld(Product o) {
-		if(o == null) return 1;
-		
-		// First by manufacturer
-		int result = this.manufacturer == null ? -1 : this.manufacturer.compareTo(o.manufacturer);
-		if(result == 0) {
-			
-			// Then by family
-			result = this.family.compareTo(o.family);
-			if(result == 0) {
-				
-				// Then by model
-				// First get the model string in alphabetical order
-				String model = this.model.trim().replace(" ", "");
-				char[] chars = model.toCharArray();
-				Arrays.sort(chars);
-				String sortedChars = String.valueOf(chars);
-				
-				// Then get the other model string in alphabetical order
-				String thatModel = o.model.trim().replace(" ", "");
-				char[] thatChars = thatModel.toCharArray();
-				Arrays.sort(thatChars);
-				String thatSortedChars = String.valueOf(thatChars);
-				
-				result = sortedChars.compareTo(thatSortedChars);
-				if(result == 0) {
-					
-					// Then, finally, by product_name
-					return this.product_name.compareTo(o.product_name);
-				}				
-			}
-		}
-		
-		return result;
-	}
-
-	public int compStr(String a, String b) {
+	private int compStr(String a, String b) {
 		
 		if(Objects.equals(a, b)) return 0;
 		

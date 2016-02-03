@@ -7,6 +7,10 @@ import java.util.Set;
 import sortable.data.Listing;
 import sortable.data.Product;
 
+/**
+ * Maps {@link Product}s to their associated {@link Match} object.
+ * @author fikayo
+ * */
 public class MatchMap {
 
 	private HashMap<Product, Match> matches;
