@@ -10,21 +10,25 @@ public class Program {
 	 */
 	public static void main(String[] args) {
 
-		 String listingsFile = "res/listings.txt";
-		 String productsFile = "res/products.txt";
-		 String resultsFile = "out/results.txt";
-		 String diffFile = "out/diffs.txt";
-		 		 
-		 ListingMatcher matcher = new ListingMatcher(listingsFile, productsFile);
+		String listingsFile = "res/listings.txt";
+		String productsFile = "res/products.txt";
+		String resultsFile = "out/results.txt";
+		String diffFile = "out/diffs.txt";		 		 
 
-		 Stopwatch watch = Stopwatch.createUnstarted();
-		 watch.start();
-		 matcher.run();
-		 matcher.printResults(resultsFile);
-		 watch.stop();
-		 
-		 matcher.getDiffs(diffFile);
-		 
-		 System.out.printf("\nTime taken: %d ms", watch.elapsed(TimeUnit.MILLISECONDS));
+		System.out.println("Starting program");
+		
+		ListingMatcher matcher = new ListingMatcher(listingsFile, productsFile);
+
+		Stopwatch watch = Stopwatch.createStarted();
+		matcher.run();
+		
+		long timeElapsed = watch.elapsed(TimeUnit.MILLISECONDS);
+		
+		matcher.printResults(resultsFile);		 
+		matcher.getDiffs(diffFile);
+		watch.stop();
+
+		System.out.printf("\nProduct matching run time: %d ms", timeElapsed);
+		System.out.printf("\nEntire Program run time: %d ms", watch.elapsed(TimeUnit.MILLISECONDS));
 	} 
 }

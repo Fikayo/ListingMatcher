@@ -49,21 +49,26 @@ public class ListingMatcher {
 	
 	public void run() {
 
-		System.out.println("Beginning program");
+		System.out.print("Reading and sorting products from input file...");
 		
-		 // Add products and sort them by manufacturer
-		 for(String json : readFile(productsFile)) {
-			 this.addProduct(Product.parseJson(json));
-		 }
-		 
-		 // Add all listings to a multiset		 
-		 HashMultiset<Listing> listings = HashMultiset.create();
-		 for(String json : readFile(listingsFile)) {
-			 Listing listItem = Listing.parseJson(json);
-			 listings.add(listItem);
+		// Add products and sort them by manufacturer
+		for(String json : readFile(productsFile)) {
+			this.addProduct(Product.parseJson(json));
+		}
+		
+		System.out.println("Complete");
+		System.out.print("Reading and matching listings from input file...");
+		
+		// Add all listings to a multiset		 
+		HashMultiset<Listing> listings = HashMultiset.create();
+		for(String json : readFile(listingsFile)) {
+			Listing listItem = Listing.parseJson(json);
+			listings.add(listItem);
 			 
-			 this.matchListing(listItem);
-		 }
+			this.matchListing(listItem);
+		}
+
+		System.out.println("Complete");
 	}
 	
 	public void printResults(String resultsFile) {
@@ -76,7 +81,7 @@ public class ListingMatcher {
 			builder.append(gson.toJson(match) + "\n");
 		}
 
-		System.out.println("Printing to output file");
+		System.out.println("\nPrinting to output file: " + Paths.get(resultsFile).toAbsolutePath().toString());
 		this.writeFile(resultsFile, builder.toString());
 		System.out.println("Filewrite complete");			
 	}
@@ -100,7 +105,7 @@ public class ListingMatcher {
 			builder.append(gson.toJson(prod) + "\n");
 		}
 
-		System.out.println("\nPrinting to diff file");
+		System.out.println("\nPrinting to all unmatched products to the 'diff' file: " + Paths.get(diffFile).toAbsolutePath().toString());
 		this.writeFile(diffFile, builder.toString());
 		System.out.println("Diff write complete");
 	}
