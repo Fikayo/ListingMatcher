@@ -11,9 +11,9 @@ public class Listing {
 	private String title;
 	private String manufacturer;
 	private String currency;
-	private double price;
+	private String price;
 	
-	public Listing(String title, String manufacturer, String currency, double price) {
+	public Listing(String title, String manufacturer, String currency, String price) {
 		this.title = title;
 		this.manufacturer = manufacturer;
 		this.currency = currency;
@@ -32,7 +32,7 @@ public class Listing {
 		return currency;
 	}
 	
-	public double getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
